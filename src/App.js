@@ -3,13 +3,13 @@ import Search from './components/search/Search';
 import './App.css';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Typography } from '@mui/material';
-import { animated, useSpring } from 'react-spring'; // Import animated and useSpring from react-spring
+import { animated, useSpring } from 'react-spring';
 import { GiRabbitHead } from "react-icons/gi";
-// Define your custom theme if needed
+
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#2196f3', // Vibrant blue color
+      main: '#2196f3',
     },
   },
 });
@@ -19,10 +19,14 @@ const styles = {
     backgroundColor: '#000',
     minHeight: '100vh',
     padding: '20px',
-    position: 'relative', // Ensure footer positioning relative to this container
-    paddingBottom: '80px', // Add padding bottom to accommodate the footer
+    position: 'relative',
+    paddingBottom: '80px',
     background: 'linear-gradient(145deg, #0a2e4e, #0e3a5f)',
-    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)', // Adjust the shadow for desired effect
+    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.5)',
+    '@media (max-width: 768px)': {
+      padding: '10px',
+      paddingBottom: '70px',
+    },
   },
   headerTitle: {
     fontSize: '3rem',
@@ -30,41 +34,69 @@ const styles = {
     textAlign: 'center',
     color: '#fff',
     cursor: 'pointer',
-    userSelect: 'none', // Disable text selection
+    userSelect: 'none',
+    '@media (max-width: 1200px)': {
+      fontSize: '2.5rem',
+    },
+    '@media (max-width: 992px)': {
+      fontSize: '2rem',
+    },
+    '@media (max-width: 768px)': {
+      fontSize: '1.5rem',
+    },
+    '@media (max-width: 576px)': {
+      fontSize: '1.25rem',
+    },
   },
   footer: {
-    display: 'flex', // Display children in a row
-    justifyContent: 'center', // Center align horizontally
-    alignItems: 'center', // Center align vertically
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     textAlign: 'center',
     backgroundColor: '#80FF00',
     borderRadius: 8,
-    position: 'absolute',
-    bottom: '0', // Stick footer to the bottom of the viewport
-    width: '90%', // Full width
-    padding: '10px 0', // Adjust padding as needed
-    marginLeft: 40,
+    position: 'relative', // Changed to relative
+    width: '100%',
+    padding: '10px 0',
+    marginTop: '20px', // Adjust margin as needed
+    '@media (max-width: 768px)': {
+      flexDirection: 'column',
+      alignItems: 'center',
+      position: 'relative', // Ensure relative positioning on smaller screens
+      marginTop: '10px',
+    },
   },
   footerText: {
-    display: 'flex', // Display items in a row
-    alignItems: 'center', // Center align vertically
+    display: 'flex',
+    alignItems: 'center',
   },
   footerItem: {
-    marginLeft: '10px', // Add space between items
+    marginLeft: '10px',
   },
   footerLink: {
-    textDecoration: 'none', // Remove underline from the link
-    color: 'black', // Use the default text color
-    fontWeight: 'bold', // Apply bold font weight
-    fontSize: 14, // Adjust font size
+    textDecoration: 'none',
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 14,
+    '@media (max-width: 992px)': {
+      fontSize: 12,
+    },
+    '@media (max-width: 768px)': {
+      fontSize: 10,
+    },
+    '@media (max-width: 576px)': {
+      fontSize: 8,
+    },
   },
   searchContainer: {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '20px',
+    '@media (max-width: 768px)': {
+      marginTop: '10px',
+    },
   },
 };
-
 
 function App() {
   const props = useSpring({
@@ -76,9 +108,9 @@ function App() {
   return (
     <div style={styles.appContainer}>
       <header className="App-header">
-        <animated.div style={{ ...styles.headerTitle, ...props,userSelect:'none' }}>
+        <animated.div style={{ ...styles.headerTitle, ...props, userSelect:'none' }}>
           <Typography variant="h1" color="primary" gutterBottom>
-          <span style={{ color: '#80FF00' }}>S</span>nap<span style={{ color: '#80FF00' }}>S</span>earch <GiRabbitHead />
+            <span style={{ color: '#80FF00' }}>S</span>nap<GiRabbitHead />
           </Typography>
         </animated.div>
       </header>
@@ -96,7 +128,7 @@ function App() {
               href="https://aditya-pimpale-portfolio.wuaze.com/?i=1"
               target="_blank"
               rel="noopener noreferrer"
-              style={styles.footerLink} // Apply style to remove underline
+              style={styles.footerLink}
             >
               Aditya Pimpale
             </a>

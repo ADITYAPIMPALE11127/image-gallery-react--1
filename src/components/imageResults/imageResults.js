@@ -3,6 +3,40 @@ import PropTypes from 'prop-types';
 import { Grid, Card, CardMedia, CardActions, IconButton, Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography } from '@mui/material';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 
+const styles = {
+  card: {
+    '@media (max-width: 1200px)': {
+      width: '100%',
+    },
+    '@media (max-width: 992px)': {
+      width: '100%',
+    },
+    '@media (max-width: 768px)': {
+      width: '100%',
+    },
+    '@media (max-width: 576px)': {
+      width: '100%',
+    },
+  },
+  cardMedia: {
+    height: '200px',
+    '@media (max-width: 768px)': {
+      height: '150px',
+    },
+    '@media (max-width: 576px)': {
+      height: '100px',
+    },
+  },
+  cardActions: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  dialogImage: {
+    width: '100%',
+  },
+};
+
 class ImageResults extends Component {
   state = {
     open: false,
@@ -28,15 +62,15 @@ class ImageResults extends Component {
         <Grid container spacing={2}>
           {images.map(img => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={img.id}>
-              <Card>
+              <Card style={styles.card}>
                 <CardMedia
                   component="img"
                   alt={img.tags}
-                  height="200"
+                  style={styles.cardMedia}
                   image={img.largeImageURL}
                   title={img.tags}
                 />
-                <CardActions>
+                <CardActions style={styles.cardActions}>
                   <Typography variant="body2" color="textSecondary" component="p">
                     {img.tags}
                   </Typography>
@@ -56,10 +90,10 @@ class ImageResults extends Component {
     return (
       <div>
         {imageList}
-        <Dialog open={open} onClose={this.handleClose}>
+        <Dialog open={open} onClose={this.handleClose} maxWidth="md" fullWidth>
           <DialogTitle>Image</DialogTitle>
           <DialogContent>
-            <img src={currentImg} alt="" style={{ width: '100%' }} />
+            <img src={currentImg} alt="" style={styles.dialogImage} />
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="primary">Close</Button>
